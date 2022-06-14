@@ -38,10 +38,10 @@ class Address
 
 void sort(Address* &addresses, int size) {
     for (int i = 0; i < size; i++) {
-        for (int j = 1; j < size; j++) {
+        for (int j = 0; j < size - 1; j++) {
             std::string city, pcity, street, pstreet;
             Address *p = (addresses + j);
-            Address *pp = (addresses + j - 1);
+            Address *pp = (addresses + j + 1);
 
             city = p->getCity();
             street = p->getStreet();
@@ -49,12 +49,12 @@ void sort(Address* &addresses, int size) {
             pstreet = pp->getStreet();
 
             Address tmp;
-            if (city.compare(pcity) == 0 && street.compare(pstreet) < 0) {
+            if (city.compare(pcity) == 0 && street.compare(pstreet) > 0) {
                 tmp = *(p);
                 *(p) = *(pp);
                 *(pp) = tmp;
             }
-            else if (city.compare(pcity) < 0) {
+            else if (city.compare(pcity) > 0) {
                 tmp = *(p);
                 *(p) = *(pp);
                 *(pp) = tmp;
